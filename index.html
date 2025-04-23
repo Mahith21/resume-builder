@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume Builder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Resume Builder</a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="resumeForm">
+                            <!-- Step 1: Personal Information -->
+                            <div class="form-section" id="step1">
+                                <h3 class="mb-4">Personal Information</h3>
+                                <div class="mb-3">
+                                    <label for="fullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Address</label>
+                                    <textarea class="form-control" id="address" rows="2"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="linkedin" class="form-label">LinkedIn URL</label>
+                                    <input type="url" class="form-control" id="linkedin">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="github" class="form-label">GitHub URL</label>
+                                    <input type="url" class="form-control" id="github">
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Career Objective -->
+                            <div class="form-section d-none" id="step2">
+                                <h3 class="mb-4">Career Objective</h3>
+                                <div class="mb-3">
+                                    <label for="objective" class="form-label">Career Objective</label>
+                                    <textarea class="form-control" id="objective" rows="4" required></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Education -->
+                            <div class="form-section d-none" id="step3">
+                                <h3 class="mb-4">Education</h3>
+                                <div id="educationContainer">
+                                    <div class="education-entry mb-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">Degree/Course</label>
+                                            <input type="text" class="form-control degree" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Institution</label>
+                                            <input type="text" class="form-control institution" required>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Year Started</label>
+                                                <input type="number" class="form-control year-start" required>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Year Completed</label>
+                                                <input type="number" class="form-control year-end" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-secondary" id="addEducation">Add More Education</button>
+                            </div>
+
+                            <!-- Step 4: Work Experience -->
+                            <div class="form-section d-none" id="step4">
+                                <h3 class="mb-4">Work Experience</h3>
+                                <div id="experienceContainer">
+                                    <div class="experience-entry mb-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">Company</label>
+                                            <input type="text" class="form-control company">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Position</label>
+                                            <input type="text" class="form-control position">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Responsibilities</label>
+                                            <textarea class="form-control responsibilities" rows="3"></textarea>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Start Date</label>
+                                                <input type="month" class="form-control exp-start">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">End Date</label>
+                                                <input type="month" class="form-control exp-end">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-secondary" id="addExperience">Add More Experience</button>
+                            </div>
+
+                            <!-- Step 5: Skills -->
+                            <div class="form-section d-none" id="step5">
+                                <h3 class="mb-4">Skills</h3>
+                                <div class="mb-3">
+                                    <label for="skills" class="form-label">Skills (comma-separated)</label>
+                                    <textarea class="form-control" id="skills" rows="3" required></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Navigation Buttons -->
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-secondary" id="prevBtn">Previous</button>
+                                <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+                                <button type="submit" class="btn btn-success d-none" id="submitBtn">Generate Resume</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template Selection Modal -->
+    <div class="modal fade" id="templateModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Choose a Template</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="templateContainer">
+                        <!-- Templates will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resume Preview Modal -->
+    <div class="modal fade" id="previewModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Resume Preview</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="resumePreview"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="downloadBtn">Download PDF</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html> 
