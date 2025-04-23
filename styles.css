@@ -1,0 +1,89 @@
+.form-section {
+    transition: all 0.3s ease;
+}
+
+.education-entry, .experience-entry {
+    border: 1px solid #dee2e6;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.template-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.template-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.template-card.selected {
+    border: 2px solid #0d6efd;
+}
+
+/* Resume Templates Styles */
+.resume-template {
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.template-modern {
+    font-family: 'Roboto', sans-serif;
+}
+
+.template-modern .header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.template-classic {
+    font-family: 'Times New Roman', serif;
+}
+
+.template-classic .header {
+    border-bottom: 2px solid #333;
+    margin-bottom: 20px;
+}
+
+.template-minimal {
+    font-family: 'Arial', sans-serif;
+}
+
+.template-minimal .header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Preview Modal Styles */
+#resumePreview {
+    background-color: white;
+    padding: 20px;
+    min-height: 500px;
+}
+
+/* Loading Spinner */
+.spinner-border {
+    display: none;
+}
+
+.loading .spinner-border {
+    display: inline-block;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .resume-template {
+        padding: 15px;
+    }
+    
+    .template-modern .header,
+    .template-classic .header,
+    .template-minimal .header {
+        padding: 15px;
+    }
+} 
